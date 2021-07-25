@@ -1,0 +1,32 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package task3;
+import java.io.*;
+import java.net.*;
+import java.util.Date;
+import java.util.Scanner;
+/**
+ *
+ * @author Rakibul Hasan Remon
+ */
+public class Server {
+    public static void main(String[] args) {
+        try{
+            while(true){
+                ServerSocket ss = new ServerSocket(7777);
+                System.out.println("Server running at Port : 7777");
+                Socket socket = ss.accept();
+                System.out.println("Client Connected.");
+                
+                ServerThread serverThread = new ServerThread(socket);
+                serverThread.start();
+                
+
+                ss.close();
+            }
+        }catch(Exception e){System.out.println(e);}
+    }
+}
